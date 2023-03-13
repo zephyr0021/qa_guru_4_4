@@ -1,3 +1,7 @@
+import math
+import random
+
+
 def test_greeting():
     """
     Напишите программу, которая выводит на экран приветствие.
@@ -19,11 +23,11 @@ def test_rectangle():
     b = 20
 
     # TODO сосчитайте периметр
-    perimeter = 2*(a+b)
+    perimeter = 2 * (a + b)
     assert perimeter == 60
 
     # TODO сосчитайте площадь
-    area = a*b
+    area = a * b
     assert area == 200
 
 
@@ -34,11 +38,13 @@ def test_circle():
     """
     r = 23
     # TODO сосчитайте площадь
-    area = 0
+
+    area = math.pi * r ** 2
     assert area == 1661.9025137490005
 
     # TODO сосчитайте длину окружности
-    length = 0
+    length = 2 * math.pi * r
+    print("Площадь круга -", area, "длина круга -", length)
     assert length == 144.51326206513048
 
 
@@ -49,6 +55,10 @@ def test_random_list():
 
     # TODO создайте список
     l = []
+    i = 0
+    for i in range(10):
+        l.append(random.randint(1, 100))
+    l.sort()
     assert len(l) == 10
     assert l[0] < l[-1]
 
@@ -59,7 +69,9 @@ def test_unique_elements():
     """
     l = [1, 2, 3, 4, 5, 5, 5, 6, 7, 8, 8, 9, 10, 10]
     # TODO удалите повторяющиеся элементы
-
+    for element in l:
+        if l.count(element) >= 2:
+            l.remove(element)
     assert isinstance(l, list)
     assert len(l) == 10
     assert l == [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -76,6 +88,9 @@ def test_dicts():
     second = [1, 2, 3, 4, 5]
     # TODO создайте словарь
     d = {}
+    for key, value in zip(first, second):
+        d.update({key: value})
 
+    print(d.values())
     assert isinstance(d, dict)
     assert len(d) == 5
